@@ -15,7 +15,7 @@ cmd3_1 = name + "	pptpd	" + passwd + "	\*"
 cmd3 = "echo " + cmd3_1 + " >> /etc/ppp/chap-secrets"
 time.sleep(0.5)
 os.system("echo starting to install pptpd...")
-os.system('apt-get install pptpd y')
+os.system('apt-get install pptpd -y')
 time.sleep(10)
 os.system("echo pptpd established...")
 cmd = 'echo localip 10.0.0.1 >> /etc/pptpd.conf'
