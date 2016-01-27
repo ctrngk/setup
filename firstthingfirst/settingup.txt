@@ -1,0 +1,38 @@
+apt-get install git
+git config --global user.name "ctrngk"
+git config --global user.email ctrngk@gmail.com
+
+################################################# checking your settings
+git config --list
+
+
+################################################# create a remote repos
+curl -u 'ctrngk' https://api.github.com/user/repos -d '{"name":"hello-repo"}'
+### you only need to change "hello-repo"
+
+################################################ push a directory
+cd ..
+git init
+git add .
+git commit -m "xxxx"
+git remote -v
+git remote add origin https://github.com/ctrngk/hello-repo.git
+git remote -v
+git push -u origin master
+
+#################################### productivity to combine create and push
+git config --global alias.create-add '!sh -c "curl -u \"ctrngk\" https://api.github.com/user/repos -d \"{\\\"name\\\":\\\"$1\\\"}\" && git remote add origin git@github.com:ctrngk/$1.git" -'
+
+################################### how to use git create-add
+git create-add hello-repo   # create hello-repo repository
+git push -u origin master   # push my repository to GitHub
+
+#################################### how to list repos
+#################################### curl -s to silence, rather than ignoring timing
+curl -s https://api.github.com/users/ctrngk/repos | grep full_name
+
+################################### how to know more about github
+curl https://api.github.com/users/ctrngk
+OR
+curl -u "ctrngk" https://api.github.com/users/ctrngk
+
