@@ -16,7 +16,7 @@ cmd3 = "echo " + cmd3_1 + " >> /etc/ppp/chap-secrets"
 time.sleep(0.5)
 os.system("echo starting to install pptpd...")
 os.system('apt-get install pptpd y')
-time.sleep(0.5)
+time.sleep(10)
 os.system("echo pptpd established...")
 cmd = 'echo localip 10.0.0.1 >> /etc/pptpd.conf'
 cmd2 = 'echo remoteip 10.0.0.100-200 >> /etc/pptpd.conf'
@@ -28,7 +28,9 @@ os.system("echo ms-dns 8.8.4.4 >> /etc/ppp/pptpd-options")
 os.system("echo net.ipv4.ip_forward = 1 >> /etc/sysctl.conf")
 os.system("sysctl -p")
 os.system("ipv4 forward take effect...")
+time.sleep(2)
 cmd_5 = "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE && iptables-save"
 os.system(cmd_5)
 os.system("echo iptables established")
+time.sleep(0.5)
 os.system("echo pptpd server is OK now")
